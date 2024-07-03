@@ -5,7 +5,8 @@ import joblib
 
 knn_model = joblib.load('knn_model.pkl')
 nb_model = joblib.load('nb_model.pkl')
-label_encoder = joblib.load('label_encoder.pkl')
+label_encoder_summary = joblib.load('label_encoder_summary.pkl')
+label_encoder_daily_summary = joblib.load('label_encoder_daily_summary.pkl')
 
 class WeatherPrediction(tk.Frame):
     def __init__(self, master=None):
@@ -77,7 +78,7 @@ class WeatherPrediction(tk.Frame):
                 self.result_label.config(text="Pilih algoritma terlebih dahulu.")
                 return
 
-            predicted_label = label_encoder.inverse_transform([prediction])[0]
+            predicted_label = label_encoder_daily_summary.inverse_transform([prediction])[0]
 
             self.result_label.config(text=f"Prediksi Cuaca: {predicted_label}")
 
